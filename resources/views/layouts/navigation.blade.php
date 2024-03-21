@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="bg-card-green border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,23 +6,30 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                        <x-application-logo class="block h-9 w-auto fill-current text-cream" />
                     </a>
                 </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="{{ request()->routeIs('dashboard') ? 'underlineDec' : '' }}">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="{{ request()->routeIs('profile.edit') ? 'underlineDec' : '' }}">
+                        {{ __('Profile') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('poll')" :active="request()->routeIs('poll')" class="{{ request()->routeIs('poll') ? 'underlineDec' : '' }}">
+                        {{ __('Poll Result') }}
+                    </x-nav-link>
                 </div>
+                
+
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-card-green bg-soft-green hover:bg-cream hover:text-soft-green focus:outline-none transition ease-in-out duration-150">
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -98,3 +105,10 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .underlineDec {
+        text-decoration-color: #ECE3CE;
+        border-bottom-color: #ECE3CE; /* Menghilangkan garis bawah */
+    }
+</style>
