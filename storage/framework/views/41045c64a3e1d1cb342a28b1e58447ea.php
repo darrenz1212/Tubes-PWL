@@ -21,5 +21,4 @@ $classes = ($active ?? false)
 <a <?php echo e($attributes->merge(['class' => $classes])); ?>>
     <?php echo e($slot); ?>
 
-</a>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/nav-link.blade.php ENDPATH**/ ?>
+</a><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/nav-link.blade.php ENDPATH**/ ?>

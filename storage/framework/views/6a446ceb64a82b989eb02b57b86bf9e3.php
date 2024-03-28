@@ -18,5 +18,4 @@
             <li><?php echo e($message); ?></li>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
     </ul>
-<?php endif; ?>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/input-error.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/input-error.blade.php ENDPATH**/ ?>

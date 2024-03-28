@@ -1,6 +1,8 @@
 <?php
-use App\Http\Controllers\PollController;
+
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\pollController;
+use App\Http\Controllers\pollResultController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/poll', [PollController::class, 'index'])->name('poll');
+Route::get('/poll', [pollController::class, 'index'])->name('poll');
+require __DIR__.'/auth.php';
+Route::get('/pollResult', [pollResultController::class, 'index'])->name('pollResult');
 require __DIR__.'/auth.php';
 
+require __DIR__.'/auth.php';

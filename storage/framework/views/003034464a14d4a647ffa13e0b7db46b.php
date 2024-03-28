@@ -37,8 +37,8 @@
             untuk dibuka di semester antara Juli-September 2024.
             </p>
             <div style="margin-top: 5%">
-                <a href="" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Vote Sekarang</a>
-                <a href="<?php echo e(route('poll')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Hasil Polling</a>
+                <a href="<?php echo e(route('poll')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Vote Sekarang</a>
+                <a href="" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Hasil Polling</a>
             </div>
         </div>
     </div>
@@ -51,5 +51,4 @@
 <?php if (isset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54)): ?>
 <?php $component = $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54; ?>
 <?php unset($__componentOriginal9ac128a9029c0e4701924bd2d73d7f54); ?>
-<?php endif; ?>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/dashboard.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/dashboard.blade.php ENDPATH**/ ?>

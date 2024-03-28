@@ -236,5 +236,4 @@
             <?php endif; ?>
         </div>
     </form>
-</section>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/profile/partials/update-password-form.blade.php ENDPATH**/ ?>
+</section><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/profile/partials/update-password-form.blade.php ENDPATH**/ ?>

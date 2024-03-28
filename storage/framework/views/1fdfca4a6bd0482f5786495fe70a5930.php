@@ -97,5 +97,4 @@ $maxWidth = [
         <?php echo e($slot); ?>
 
     </div>
-</div>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/modal.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/modal.blade.php ENDPATH**/ ?>

@@ -54,5 +54,4 @@ switch ($width) {
 
         </div>
     </div>
-</div>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/dropdown.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/dropdown.blade.php ENDPATH**/ ?>

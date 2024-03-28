@@ -15,5 +15,4 @@
 <label <?php echo e($attributes->merge(['class' => 'block font-medium text-sm text-cream'])); ?>>
     <?php echo e($value ?? $slot); ?>
 
-</label>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/input-label.blade.php ENDPATH**/ ?>
+</label><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/input-label.blade.php ENDPATH**/ ?>

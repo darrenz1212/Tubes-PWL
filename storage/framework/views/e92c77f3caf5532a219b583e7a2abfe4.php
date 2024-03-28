@@ -178,5 +178,4 @@
 <?php $component = $__componentOriginal9f64f32e90b9102968f2bc548315018c; ?>
 <?php unset($__componentOriginal9f64f32e90b9102968f2bc548315018c); ?>
 <?php endif; ?>
-</section>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/profile/partials/delete-user-form.blade.php ENDPATH**/ ?>
+</section><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/profile/partials/delete-user-form.blade.php ENDPATH**/ ?>

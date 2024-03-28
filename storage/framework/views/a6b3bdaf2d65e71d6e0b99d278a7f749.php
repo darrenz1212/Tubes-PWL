@@ -12,5 +12,4 @@
 } ?>
 <?php unset($__defined_vars); ?>
 
-<input <?php echo e($disabled ? 'disabled' : ''); ?> <?php echo $attributes->merge(['class' => 'border-gray-300 dark:border-gray-700 bg-soft-green text-card-green focus:ring-white rounded-md shadow-sm']); ?>>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/text-input.blade.php ENDPATH**/ ?>
+<input <?php echo e($disabled ? 'disabled' : ''); ?> <?php echo $attributes->merge(['class' => 'border-gray-300 dark:border-gray-700 bg-soft-green text-card-green focus:ring-white rounded-md shadow-sm']); ?>><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/components/text-input.blade.php ENDPATH**/ ?>

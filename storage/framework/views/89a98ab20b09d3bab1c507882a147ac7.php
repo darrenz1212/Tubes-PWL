@@ -35,5 +35,4 @@
             </main>
         </div>
     </body>
-</html>
-<?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/layouts/app.blade.php ENDPATH**/ ?>
+</html><?php /**PATH C:\Users\Femmy Friscilla\Documents\Tubes-PWL-main\resources\views/layouts/app.blade.php ENDPATH**/ ?>
