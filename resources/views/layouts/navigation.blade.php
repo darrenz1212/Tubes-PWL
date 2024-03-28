@@ -17,7 +17,7 @@
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="{{ request()->routeIs('profile.edit') ? 'underlineDec' : '' }}">
                         {{ __('Profile') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('poll')" :active="request()->routeIs('poll')" class="{{ request()->routeIs('poll') ? 'underlineDec' : '' }}">
+                    <x-nav-link :href="route('pollResult')" :active="request()->routeIs('pollResult')" class="{{ request()->routeIs('pollResult') ? 'underlineDec' : '' }}">
                         {{ __('Poll Result') }}
                     </x-nav-link>
                 </div>

@@ -15,14 +15,9 @@ class ProfileUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        $data = DB::table('users')
-                ->join('role', 'users.role_id', '=', 'role.role_id')
-                ->select('users.*', 'role.role_id')
-                ->get();
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-            'role_id' => [$data]
         ];
     }
 }

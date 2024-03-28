@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,23 +30,26 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'nama' => ['required', 'string', 'max:255'],
+            'nrp' =>['required','string','max:11'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'nrp' => $request->nrp,
+            'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => 1
+            'prodi' => $request->prodi,
+            'fakultas'=>$request->fakultas,
+            'role' => 0
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(route('login', absolute: false));
     }
 }
