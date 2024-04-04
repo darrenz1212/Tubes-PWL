@@ -23,7 +23,8 @@ class User extends Authenticatable
         'password',
         'prodi',
         'fakultas',
-        'role'
+        'role',
+        'kurikulum'
     ];
 
     /**
@@ -49,6 +50,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function pollDets()
+    {
+        return $this->hasMany(PollDet::class);
     }
 
 
