@@ -52,5 +52,10 @@ class User extends Authenticatable
         ];
     }
 
+    public function pollDets()
+    {
+        return $this->hasMany(PollDet::class);
+    }
+
 
 }

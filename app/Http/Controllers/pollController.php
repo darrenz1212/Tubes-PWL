@@ -14,26 +14,34 @@ use App\Models\User;
 class pollController extends Controller
 {
 
-        public function index()
+    public function index()
     {
 //        $kk = User::all();
 //        dd($kk);
 //        Kurikulum otomatis masih gagal, sementara pake 2020 dlu
 
-            $mata_kuliah = DB::table('polling')
-                ->join('mata_kuliah', 'polling.id_matkul', '=', 'mata_kuliah.id_matkul')
-                ->select('polling.id_polling', 'mata_kuliah.*')
-                ->where('kurikulum','=',2020)
-                ->get();
+        $mata_kuliah = DB::table('polling')
+            ->join('mata_kuliah', 'polling.id_matkul', '=', 'mata_kuliah.id_matkul')
+            ->select('polling.id_polling', 'mata_kuliah.*')
+            ->where('kurikulum','=',2020)
+            ->get();
 
         return view('poll.poll', ['mata_kuliah' => $mata_kuliah]); // Pass $mata_kuliah to the view
     }
 
     public function createPoll(Request $request)
     {
-        $selectedCourses = $request->selected_courses; // Ambil array langsung
 
-        // Ambil semua mata kuliah yang dipilih sekaligus
+        $nrpvalidate = Auth::user()->nrp;
+
+        $pollvalidate = PollDet::all();
+
+        foreach ($pollvalidate as $p){
+            if ($nrpvalidate == $p->nrp){
+                dd("Anda sudah melakukan voting");
+            }
+        }
+        $selectedCourses = $request->selected_courses;
         $mataKuliah = DB::table('polling')
             ->join('mata_kuliah', 'polling.id_matkul', '=', 'mata_kuliah.id_matkul')
             ->select('polling.id_polling', 'mata_kuliah.*')
@@ -72,6 +80,6 @@ class pollController extends Controller
 
     public function showPoll()
     {
-        
+
     }
 }

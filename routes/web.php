@@ -13,8 +13,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('index',function (){
-   return view('index') ;
+Route::get('/prodi',function (){
+    return view('dashboardProdi') ;
 })->middleware(['auth','verified'])->name('prodi');
 
 Route::middleware('auth')->group(function () {
@@ -24,12 +24,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/poll', [pollController::class, 'index'])->name('poll');
-
 Route::post('/poll',[pollController::class,'createPoll'])->name('create-poll');
-
 Route::get('/pollResult', [pollResultController::class, 'index'])->name('pollResult');
+
+Route::get('/addmk',[\App\Http\Controllers\MKController::class,'index'])->name('addMK');
+Route::post('/addmk',[\App\Http\Controllers\MKController::class,'store'])->name('mata-kuliah.store');
 require __DIR__.'/auth.php';
 
-require __DIR__.'/auth.php';
-
-require __DIR__.'/auth.php';
