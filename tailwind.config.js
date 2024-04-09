@@ -17,6 +17,7 @@ export default {
             colors: {
                 'soft-green': '#ACBA9F',
                 'cream': '#ECE3CE',
+                'dark-cream': '#e3d1a6',
                 'card-green': '#3A4D39'
             },
         },
