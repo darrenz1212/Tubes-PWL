@@ -18,7 +18,7 @@
                         {{ __('Profile') }}
                     </x-nav-link>
                     <x-nav-link :href="route('pollResult')" :active="request()->routeIs('pollResult')" class="{{ request()->routeIs('pollResult') ? 'underlineDec' : '' }}">
-                        {{ __('PollDet Result') }}
+                        {{ __('Poll Result') }}
                     </x-nav-link>
                 </div>
 
