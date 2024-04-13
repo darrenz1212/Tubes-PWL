@@ -1,7 +1,7 @@
 <x-guest-layout>
 <h1 class="text-cream font-bold text-5xl text-center">Lupa password?</h1> <br>
     <div class="mb-4 text-sm text-center text-cream">
-        {{ __('Jangan khawatir. Masukkan email anda dan kami akan mengirimkan tautan untuk mengatur ulang password anda.') }}
+        {{ __('Masukkan email anda dan kami akan mengirimkan tautan untuk mengatur ulang password anda.') }}
     </div>
 
     <!-- Session Status -->

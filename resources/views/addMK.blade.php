@@ -14,8 +14,8 @@
                 Silahkan masukkan mata kuliah
             </p>
             <section>
-                <form action="{{ route('mata-kuliah.store') }}" method="POST" class="">
-                    @csrf <!-- CSRF Token -->
+                <form id="addMatkulForm" action="{{ route('mata-kuliah.store') }}" method="POST" class="">
+                    @csrf
                     <div class="mb-3">
                         <label for="id_matkul" class="form-label font-medium text-card-green">Kode Mata Kuliah</label><br>
                         <input type="text" name="id_matkul" class="custom-input bg-soft-green text-card-green focus-ring py-1 px-2 text-decoration-none border rounded-2" id="id_matkul">
@@ -57,45 +57,39 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
     }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Function to show SweetAlert alert
-    function showAlert() {
-        Swal.fire({
-            title: 'Custom animation with Animate.css',
-            showClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                `
-            },
-            hideClass: {
-                popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                `
-            }
-        });
-    }
-
-    // Submit the form asynchronously via AJAX
-    $('form').on('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+    $('#addMatkulForm').on('submit', function(event) {
+        event.preventDefault(); 
         var form = $(this);
 
         $.ajax({
             url: form.attr('action'),
             method: form.attr('method'),
-            data: form.serialize(), // Serialize the form data
+            data: form.serialize(),
             success: function(response) {
-                // Call the showAlert function upon successful form submission
-                showAlert();
+                console.log("Sukses!");
+                showAlert('success', 'Mata kuliah berhasil ditambahkan');
             },
             error: function(xhr, status, error) {
-                // Handle errors if needed
+                console.log("Error:", error);
+                showAlert('error', 'Gagal menambahkan mata kuliah. Pastikan kode mata kuliah tidak sama dan semua sudah terisi!');
             }
         });
     });
+
+    function showAlert(icon, message) {
+        Swal.fire({
+            title: icon === 'success' ? 'Success!' : 'Error!',
+            text: message,
+            icon: icon,
+            showClass: {
+                popup: 'animate__animated animate__fadeInUp animate__faster'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutDown animate__faster'
+            }
+        });
+    }
 </script>

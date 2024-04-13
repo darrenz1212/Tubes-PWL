@@ -1,3 +1,5 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-card-green leading-tight">
@@ -8,8 +10,8 @@
     <div class="container mx-auto text-card-green">
         <div class="row justify-content-center">
             <div class="col-md-10 text-center">
-                <h1 class="mb-4 mt-4" style="font-size: 300%"><b>Vote Mata Kuliah</b></h1>
-                <h2 class="mb-4">Syarat pemilihan mata kuliah:</h2>
+                <h1 class="text-card-green mt-5" style="font-size: 500%;"><b>Vote Mata Kuliah</b></h1>
+                <h2 class="mb-4" >Syarat pemilihan mata kuliah:</h2>
                 <div class="mx-auto text-center" style="max-width: 400px;">
                     <ul style="list-style-type: disc;">
                         <li>Anda dapat memilih lebih dari satu mata kuliah</li>
@@ -19,7 +21,7 @@
                 <form method="post" action="{{ route('create-poll') }}">
                     @csrf
                     <div class="mx-auto mt-5 text-center">
-                        <table class="mx-auto table table-bordered">
+                        <table class="mx-auto text-card-green">
                             <tr class="" style="font-size: 1.6rem;">
                                 <th class="px-4 pb-5"></th>
                                 <th class="px-4 pb-5">Nama Mata Kuliah</th>
