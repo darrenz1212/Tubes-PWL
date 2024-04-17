@@ -43,7 +43,6 @@
                 @endif
             </div>
             <div>
-                <a href="{{ route('register') }}" class="underline text-sm text-orange-100 hover:text-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">{{ __('Register') }}</a>
                 <x-primary-button class="ms-3 bg-soft-green">
                     {{ __('Log in') }}
                 </x-primary-button>

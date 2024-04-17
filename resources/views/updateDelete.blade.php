@@ -24,6 +24,7 @@
                         <tr>
                             <th scope="col" class="text-center bg-dark-cream p-2">NRP</th>
                             <th scope="col" class="text-center bg-dark-cream">Nama</th>
+                            <th scope="col" class="text-center bg-dark-cream">Role</th>
                             <th scope="col" class="text-center bg-dark-cream">Email</th>
                             <th scope="col" class="text-center bg-dark-cream pe-4">Actions</th>
                         </tr>
@@ -33,19 +34,20 @@
                             <tr style="line-height: 200%;">
                                 <td class="p-3 text-center">{{ $user->nrp }}</td>
                                 <td class="text-center">{{ $user->nama }}</td>
+                                <td class="text-center">{{ $user->role }}</td>
                                 <td class="text-center">{{ $user->email }}</td>
                                 <td class="text-center">
                                     <div class="row">
-                                        <div class="col">
-                                            <form action="{{ route('userUpdate', $user) }}" method="POST">
+                                        <div class="col my-auto">
+                                            <form action="{{ route('userUpdate', $user) }}" method="GET" class="d-inline">
                                                 @csrf
                                                 @method('PUT')
-                                                <button type="button" onclick="window.location='{{ route('userUpdate', $user) }}'" class="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-black focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                                <button type="submit" class="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-black focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                                     <i class="fas fa-edit"></i>
                                                 </button> 
                                             </form>
                                         </div>
-                                        <div class="col">
+                                        <div class="col my-auto">
                                             <form action="{{ route('updateDelete.destroy', $user) }}" method="POST" class="d-inline" onsubmit="return confirmDelete(event)">
                                                 @csrf
                                                 @method('DELETE')
@@ -54,6 +56,7 @@
                                                 </button>
                                             </form>
                                         </div>
+                                        
                                     </div>
                                 </td>
                             </tr>
