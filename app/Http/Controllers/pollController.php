@@ -16,15 +16,17 @@ class pollController extends Controller
 
     public function index()
     {
-        $kk = Auth::user() -> Kurikulum;
+//        $kk = User::all();
+//        dd($kk);
+//        Kurikulum otomatis masih gagal, sementara pake 2020 dlu
 
         $mata_kuliah = DB::table('polling')
             ->join('mata_kuliah', 'polling.id_matkul', '=', 'mata_kuliah.id_matkul')
             ->select('polling.id_polling', 'mata_kuliah.*')
-            ->where('kurikulum','=',$kk)
+            ->where('kurikulum','=',2020)
             ->get();
 
-        return view('poll.poll', ['mata_kuliah' => $mata_kuliah]);
+        return view('poll.poll', ['mata_kuliah' => $mata_kuliah]); // Pass $mata_kuliah to the view
     }
 
     public function createPoll(Request $request)

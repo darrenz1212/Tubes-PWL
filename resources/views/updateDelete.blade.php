@@ -29,7 +29,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($users as $user)   
+                        @foreach($users as $user)
                             <tr style="line-height: 200%;">
                                 <td class="p-3 text-center">{{ $user->nrp }}</td>
                                 <td class="text-center">{{ $user->nama }}</td>
@@ -37,12 +37,12 @@
                                 <td class="text-center">
                                     <div class="row">
                                         <div class="col">
-                                            <form action="{{ route('userUpdate', $user) }}" method="POST">
+                                            <form action="{{ route('update', $user) }}" method="POST">
                                                 @csrf
-                                                @method('PUT')
-                                                <button type="button" onclick="window.location='{{ route('userUpdate', $user) }}'" class="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-black focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                                <input type="hidden" name="_method" value="PUT"> <!-- Tambahkan input hidden untuk metode PUT -->
+                                                <button type="button" onclick="window.location='{{ route('userUpdate', $user->nrp) }}'" class="inline-flex items-center px-4 py-2 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-black focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
                                                     <i class="fas fa-edit"></i>
-                                                </button> 
+                                                </button>
                                             </form>
                                         </div>
                                         <div class="col">
@@ -66,7 +66,7 @@
 
     <script>
         function confirmDelete(event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
             Swal.fire({
                 title: "Apakah anda yakin?",

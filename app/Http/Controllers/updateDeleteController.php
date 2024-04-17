@@ -13,6 +13,13 @@ class updateDeleteController extends Controller
         return view('updateDelete', compact('users'));
     }
 
+    public function showUpdate()
+    {
+        $user = User::all();
+        return view('userUpdate', compact('user'));
+
+    }
+
     public function update(Request $request, User $user)
 {
     $request->validate([
@@ -30,7 +37,7 @@ class updateDeleteController extends Controller
                 'nrp' => $request->nrp,
                 'nama' => $request->nama,
                 'email' => $request->email,
-                'password' => bcrypt($request->password), 
+                'password' => bcrypt($request->password),
                 'prodi' => $request->prodi,
                 'fakultas' => $request->fakultas,
             ]);

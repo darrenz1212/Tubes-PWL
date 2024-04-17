@@ -14,6 +14,7 @@
                 Update User Data
             </p>
             <section>
+                {{ dd($user[0]->nrp) }}
                 <form id="updateUserDataForm" action="{{ route('userUpdate', ['user' => $user->nrp]) }}" method="POST" class="">
                     @csrf
                     @method('PUT')
@@ -43,33 +44,34 @@
                     </div>
                     <button type="submit" class="btn btn-primary bg-card-green hover:bg-soft-green">Update</button>
                 </form>
+                <span style="visibility: hidden; height: 250px">.</span>
             </section>
         </div>
     </div>
 </x-app-layout>
 <style>
     .custom-input {
-        width: 100%; 
+        width: 100%;
         height: 40px;
         padding: 8px;
-        font-size: 16px; 
+        font-size: 16px;
         border-radius: 4px;
         border: 1px solid #ccc;
         box-sizing: border-box;
-        margin-top: 5px; 
-        transition: box-shadow 0.3s; 
-        outline: 0; 
+        margin-top: 5px;
+        transition: box-shadow 0.3s;
+        outline: 0;
     }
 
     .custom-input:focus {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $('#updateUserDataForm').on('submit', function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
         var form = $(this);
 
         $.ajax({

@@ -43,17 +43,18 @@
             {{ __('Polling Result') }}
         </h2>
     </x-slot>
-    <h1 align="center" class="text-card-green mt-5" style="font-size: 500%;">Hasil Polling</h1>
-    <h2 align="center" id="date-time" class="text-card-green" style="font-size: 200%;">Per</h2>
+    <h3 align="center" class="text-card-green mt-5" style="font-size: 500%;">Hasil Polling</h3>
+    <p align="center" id="date-time" class="text-card-green" >Last Update : </p>
 
     <div class="container mt-5" style="margin: auto">
-        <div class="row justify-content-center"> 
+        <div class="row justify-content-center">
             <div class="col justify-content-center">
                 <table class="pollTable text-card-green" border="1" style="width: 80%;">
                     <thead>
                         <tr>
                             <th class="text-center bg-dark-cream p-2">Mata Kuliah</th>
                             <th class="text-center bg-dark-cream">Kode Mata Kuliah</th>
+                            <th class="text-center bg-dark-cream">Kurikulum</th>
                             <th class="text-center bg-dark-cream">Jumlah Vote</th>
                             <th class="text-center bg-dark-cream">Persentase</th>
                         </tr>
@@ -69,6 +70,7 @@
                         <tr>
                             <td class="p-3 text-center">{{ $h->nama_matkul }}</td>
                             <td class="text-center">{{ $h->id_matkul }}</td>
+                            <td class="text-center">{{ $h->kurikulum }}</td>
                             <td class="text-center">{{ $h->jumlah }}</td>
                             <td class="vote-bar-cell">
                                 <div class="vote-bar bg-soft-green text-center" style="width: {{ ($h->jumlah / $totalVotes) * 100 }}%"></div>
@@ -84,7 +86,7 @@
             <button style="width: 8rem;" type="button" class="btn bg-card-green text-cream hover:bg-soft-green hover:text-card-green" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Chart
             </button>
-            
+
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content bg-cream">
@@ -93,7 +95,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <canvas id="pollChart" width="400" height="400"></canvas>  
+                            <canvas id="pollChart" width="400" height="400"></canvas>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger text-danger hover:text-white" data-bs-dismiss="modal">Close</button>
@@ -122,7 +124,7 @@
         },
         @endforeach
     ];
-    
+
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';

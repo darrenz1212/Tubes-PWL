@@ -5,6 +5,10 @@ use App\Http\Controllers\pollController;
 use App\Http\Controllers\pollResultController;
 use App\Http\Controllers\updateDeleteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Kernel;
+use App\Http\Middleware\Mahasiswa;
+use App\Http\Middleware\Prodi;
+use App\Http\Middleware\Admin;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -24,20 +28,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/poll', [pollController::class, 'index'])->name('poll');
-Route::post('/poll',[pollController::class,'createPoll'])->name('create-poll');
-Route::get('/pollResult', [pollResultController::class, 'index'])->name('pollResult');
-
-Route::get('/addmk',[\App\Http\Controllers\MKController::class,'index'])->name('addMK');
-Route::post('/addmk',[\App\Http\Controllers\MKController::class,'store'])->name('mata-kuliah.store');
-
-Route::get('/updateDelete', [updateDeleteController::class, 'index'])->name('updateDelete');
-Route::delete('/updateDelete/{user}', [updateDeleteController::class, 'destroy'])->name('updateDelete.destroy');
-
-Route::put('/updateDelete/{user}', [updateDeleteController::class, 'update'])->name('userUpdate');
+Route::middleware(['auth',Mahasiswa::class])->group(function (){
+    Route::get('/poll', [pollController::class, 'index'])->name('poll');
+    Route::post('/poll',[pollController::class,'createPoll'])->name('create-poll');
+});
 
 
+Route::middleware(['auth',Prodi::class])->group(function (){
+    Route::get('/pollResult', [pollResultController::class, 'index'])->name('pollResult');
+    Route::get('/addmk',[\App\Http\Controllers\MKController::class,'index'])->name('addMK');
+    Route::post('/addmk',[\App\Http\Controllers\MKController::class,'store'])->name('mata-kuliah.store');
+});
 
 
+Route::middleware(['auth',Admin::class])->group(function (){
+    Route::get('/updateDelete', [updateDeleteController::class, 'index'])->name('updateDelete');
+    Route::delete('/delete/{user}', [updateDeleteController::class, 'destroy'])->name('updateDelete.destroy');
+    Route::get('/update/{user}', [updateDeleteController::class, 'showUpdate'])->name('userUpdate');
+    Route::put('/update/{user}', [updateDeleteController::class, 'update'])->name('update');
+});
 require __DIR__.'/auth.php';
 
