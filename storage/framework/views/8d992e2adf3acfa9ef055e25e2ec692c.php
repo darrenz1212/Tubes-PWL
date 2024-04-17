@@ -1,3 +1,6 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+
 <?php if (isset($component)) { $__componentOriginal9ac128a9029c0e4701924bd2d73d7f54 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9ac128a9029c0e4701924bd2d73d7f54 = $attributes; } ?>
 <?php $component = App\View\Components\AppLayout::resolve([] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -10,7 +13,7 @@
 <?php $component->withAttributes([]); ?>
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="font-semibold text-xl text-card-green leading-tight">
-            <?php echo e(__('Dashboard (Admin)')); ?>
+            <?php echo e(__('Dashboard (Prodi)')); ?>
 
         </h2>
      <?php $__env->endSlot(); ?>
@@ -22,8 +25,7 @@
             </p>
             <p style="font-size: 1.2rem;">
             Hai <?php echo e(Auth::user()->nama); ?>, anda masuk sebagai Prodi! <br>
-            Silahkan vote mata kuliah yang anda inginkan
-            untuk dibuka di semester antara Juli-September 2024.
+
             </p>
             <div style="margin-top: 5%">
                 <a href="<?php echo e(route('addMK')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Add MK</a>
