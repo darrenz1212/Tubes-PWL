@@ -37,6 +37,7 @@ class RegisteredUserController extends Controller
                  'nrp' =>['required','string','max:7'],
                  'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
                  'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
              ]);
      
              $pullkk = $request->nrp;
@@ -56,7 +57,7 @@ class RegisteredUserController extends Controller
                  'password' => Hash::make($request->password),
                  'prodi' => $request->prodi,
                  'fakultas'=>$request->fakultas,
-                 'role' => 0,
+                 'role' => $request->role,
                  'kurikulum' => $kurikulum
              ]);
      

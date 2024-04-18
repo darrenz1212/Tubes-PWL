@@ -54,7 +54,8 @@ class updateDeleteController extends Controller
 
 
 
-    public function show(User $user){
+    public function showUpdate(User $user){
+
         return view('userUpdate', compact('user'));
     }
 
