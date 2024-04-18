@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Mar 2024 pada 16.23
+-- Waktu pembuatan: 18 Apr 2024 pada 01.51
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -97,15 +97,22 @@ INSERT INTO `kurikulum` (`id_kurikulum`, `kurikulum`) VALUES
 CREATE TABLE `mata_kuliah` (
   `id_matkul` varchar(255) NOT NULL,
   `kurikulum` int(11) NOT NULL,
-  `nama_matkul` varchar(255) NOT NULL
+  `nama_matkul` varchar(255) NOT NULL,
+  `sks` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `mata_kuliah`
 --
 
-INSERT INTO `mata_kuliah` (`id_matkul`, `kurikulum`, `nama_matkul`) VALUES
-('IN2551', 2019, 'Pemrograman Web Lanjut');
+INSERT INTO `mata_kuliah` (`id_matkul`, `kurikulum`, `nama_matkul`, `sks`, `created_at`, `updated_at`) VALUES
+('IN2551', 2020, 'Pemrograman Web Lanjut', 3, '2024-03-30 06:59:39', '2024-03-30 06:59:39'),
+('IN2553', 2020, 'Web Dasar', 3, '2024-03-30 06:59:39', '2024-03-30 06:59:39'),
+('IN4351', 2019, 'Web 2', 4, '2024-03-30 06:59:39', '2024-03-30 06:59:39'),
+('IN4513', 2020, 'Statistika', 3, '2024-03-30 06:59:39', '2024-03-30 06:59:39'),
+('IN467', 2020, 'Kecerdasan Mesin ', 4, '2024-03-30 06:59:39', '2024-03-30 06:59:39');
 
 -- --------------------------------------------------------
 
@@ -176,15 +183,19 @@ CREATE TABLE `polling` (
   `id_polling` int(11) NOT NULL,
   `id_matkul` varchar(255) NOT NULL,
   `tanggal_dibuka` datetime NOT NULL,
-  `tanggal_ditutup` datetime NOT NULL
+  `tanggal_ditutup` datetime NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data untuk tabel `polling`
 --
 
-INSERT INTO `polling` (`id_polling`, `id_matkul`, `tanggal_dibuka`, `tanggal_ditutup`) VALUES
-(1, 'IN2551', '2024-03-05 04:36:06', '2024-03-05 04:36:06');
+INSERT INTO `polling` (`id_polling`, `id_matkul`, `tanggal_dibuka`, `tanggal_ditutup`, `created_at`, `updated_at`) VALUES
+(1, 'IN467', '2024-03-29 17:48:02', '2024-03-29 17:48:02', '2024-03-30 06:59:39', '2024-03-30 06:59:39'),
+(2, 'IN2553', '2024-03-29 17:48:25', '2024-03-29 17:48:25', '2024-03-30 06:59:39', '2024-03-30 06:59:39'),
+(3, 'IN4351', '2024-03-29 17:48:25', '2024-03-29 17:48:25', '2024-03-30 06:59:39', '2024-03-30 06:59:39');
 
 -- --------------------------------------------------------
 
@@ -194,8 +205,19 @@ INSERT INTO `polling` (`id_polling`, `id_matkul`, `tanggal_dibuka`, `tanggal_dit
 
 CREATE TABLE `polling_detail` (
   `id_pollingDetail` int(11) NOT NULL,
-  `nrp` int(11) NOT NULL
+  `nrp` int(11) NOT NULL,
+  `id_polling` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `polling_detail`
+--
+
+INSERT INTO `polling_detail` (`id_pollingDetail`, `nrp`, `id_polling`, `created_at`, `updated_at`) VALUES
+(20, 2272013, 2, '2024-04-16 19:52:34', '2024-04-16 19:52:34'),
+(21, 2272013, 1, '2024-04-16 19:52:34', '2024-04-16 19:52:34');
 
 -- --------------------------------------------------------
 
@@ -214,7 +236,30 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id_role`, `role`) VALUES
 (0, 'Prodi'),
-(1, 'Mahasiswa');
+(1, 'Mahasiswa'),
+(2, 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `payload` longtext NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('iid3zg5xrPmbkNTPZfDfWaoJ57TdpoFakA3JI8gL', 2272011, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicWNEQk9aQ2FCUWZTY05GZTNoTDQzNWxnQlladFhUMEhZdDZERUswSSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wb2xsUmVzdWx0Ijt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MjI3MjAxMTt9', 1713322389);
 
 -- --------------------------------------------------------
 
@@ -229,6 +274,7 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `prodi` varchar(255) NOT NULL,
   `fakultas` varchar(255) NOT NULL,
+  `Kurikulum` int(11) NOT NULL,
   `role` int(11) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
@@ -240,10 +286,9 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`nrp`, `nama`, `email`, `password`, `prodi`, `fakultas`, `role`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
-(2272010, 'Darren Zavier Hasael', '', 'darren008', 'Teknik Informatika', 'Teknologi Informasi', 0, NULL, NULL, '2024-03-04 20:21:39', '2024-03-04 20:21:39'),
-(2272011, 'Darren Hasael', 'darrenhasael19@gmail.com', '$2y$12$Sny8wGyzGWQJJ8iTqqr00etMcc7C/duuVdIIgvqCD7zRkFQImPaHa', 'Teknik Informatika', 'Teknologi Informasi', 0, NULL, NULL, '2024-03-15 08:17:25', '2024-03-15 08:17:25'),
-(2272013, 'Darren Zavier', 'darrenzavier22@gmail.com', '$2y$12$BcpTziBgJ5NbnvxAUYG2PO3dmOFqdaPPpOEgD8pvtoqzIbBG/961m', 'Teknik Informatika', 'Teknologi Informasi', 1, NULL, NULL, '2024-03-15 08:25:58', '2024-03-15 08:25:58');
+INSERT INTO `users` (`nrp`, `nama`, `email`, `password`, `prodi`, `fakultas`, `Kurikulum`, `role`, `email_verified_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2272011, 'Darren Hasae', 'darrenhasael19@gmail.com', '$2y$12$Sny8wGyzGWQJJ8iTqqr00etMcc7C/duuVdIIgvqCD7zRkFQImPaHa', 'Teknik Informatika', 'Teknologi Informasi', 2020, 0, NULL, NULL, '2024-03-15 08:17:25', '2024-04-13 02:38:59'),
+(2272013, 'Darren Zavier', 'darrenzavier22@gmail.com', '$2y$12$BcpTziBgJ5NbnvxAUYG2PO3dmOFqdaPPpOEgD8pvtoqzIbBG/961m', 'Teknik Informatika', 'Teknologi Informasi', 2020, 1, NULL, NULL, '2024-03-15 08:25:58', '2024-03-15 08:25:58');
 
 --
 -- Indexes for dumped tables
@@ -313,13 +358,22 @@ ALTER TABLE `polling`
 --
 ALTER TABLE `polling_detail`
   ADD PRIMARY KEY (`id_pollingDetail`),
-  ADD KEY `nrp` (`nrp`);
+  ADD KEY `nrp` (`nrp`),
+  ADD KEY `id_polling` (`id_polling`);
 
 --
 -- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id_role`);
+
+--
+-- Indeks untuk tabel `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
 -- Indeks untuk tabel `users`
@@ -351,6 +405,18 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `polling`
+--
+ALTER TABLE `polling`
+  MODIFY `id_polling` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT untuk tabel `polling_detail`
+--
+ALTER TABLE `polling_detail`
+  MODIFY `id_pollingDetail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
@@ -370,8 +436,8 @@ ALTER TABLE `polling`
 -- Ketidakleluasaan untuk tabel `polling_detail`
 --
 ALTER TABLE `polling_detail`
-  ADD CONSTRAINT `polling_detail_ibfk_1` FOREIGN KEY (`id_pollingDetail`) REFERENCES `polling` (`id_polling`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `polling_detail_ibfk_2` FOREIGN KEY (`nrp`) REFERENCES `users` (`nrp`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `polling_detail_ibfk_2` FOREIGN KEY (`nrp`) REFERENCES `users` (`nrp`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `polling_detail_ibfk_3` FOREIGN KEY (`id_polling`) REFERENCES `polling` (`id_polling`) ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `users`
