@@ -41,6 +41,10 @@
                         <label for="fakultas" class="form-label font-medium text-card-green">Fakultas</label><br>
                         <input type="text" name="fakultas" class="custom-input bg-soft-green text-card-green focus-ring py-1 px-2 text-decoration-none border rounded-2" id="fakultas" value="{{ $user->fakultas }}">
                     </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label font-medium text-card-green">Role</label><br>
+                        <input type="text" name="role" class="custom-input bg-soft-green text-card-green focus-ring py-1 px-2 text-decoration-none border rounded-2" id="fakultas" value="{{ $user->role }}">
+                    </div>
                     <button type="submit" class="btn btn-primary bg-card-green hover:bg-soft-green">Update</button>
                 </form>
             </section>
@@ -78,11 +82,11 @@
             data: form.serialize(),
             success: function(response) {
                 console.log("Success!");
-                showAlert('success', 'User data updated successfully');
+                showAlert('success', 'Data user berhasil diupdate.');
             },
             error: function(xhr, status, error) {
                 console.log("Error:", error);
-                showAlert('error', 'Failed to update user data. Please make sure all fields are filled.');
+                showAlert('error', 'Gagal mengupdate data user, pastika semua data terisi dan NRP sesuai.');
             }
         });
     });

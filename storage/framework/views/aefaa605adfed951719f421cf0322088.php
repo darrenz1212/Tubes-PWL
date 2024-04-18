@@ -22,15 +22,38 @@
             <p class="text-card-green mt-5" style="font-size: 500%;">
                 Selamat datang
             </p>
-            <p style="font-size: 1.5rem;">
-            Hai <?php echo e(Auth::user()->nama); ?>, anda masuk sebagai mahasiswa! <br>
-            Silahkan vote mata kuliah yang anda inginkan
-            untuk dibuka di semester antara Juli-September 2024.
-            </p>
-            <div style="margin-top: 5%">
-                <a href="<?php echo e(route('poll')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Vote Sekarang</a>
-                <a href="<?php echo e(route('pollResult')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Hasil Polling</a>
-            </div>
+            <?php if(auth()->guard()->check()): ?>
+            <?php if(Auth::user()->isAdmin('Admin')): ?>
+                <p style="font-size: 1.2rem;">
+                    Hai <?php echo e(Auth::user()->nama); ?>, anda masuk sebagai Admin! <br>
+                    Anda dapat mendaftarkan user, mengubah, dan menghapus data user.
+                </p>
+                <div style="margin-top: 5%">
+                    <a href="<?php echo e(route('registerUser')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Register User</a>
+                    <a href="<?php echo e(route('updateDelete')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Update/Delete User</a>
+                </div>
+            <?php elseif(Auth::user()->isAdmin('Mahasiswa')): ?>
+                <p style="font-size: 1.5rem;">
+                    Hai <?php echo e(Auth::user()->nama); ?>, Anda masuk sebagai mahasiswa! <br>
+                    Silahkan vote mata kuliah yang Anda inginkan untuk dibuka di semester antara Juli-September 2024.
+                </p>
+                <div style="margin-top: 5%">
+                    <a href="<?php echo e(route('poll')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Vote Sekarang</a>
+                </div>
+            <?php else: ?>
+                <p style="font-size: 1.2rem;">
+                    Hai <?php echo e(Auth::user()->nama); ?>, anda masuk sebagai Prodi! <br>
+    
+                </p>
+                <div style="margin-top: 5%">
+                    <a href="<?php echo e(route('addMK')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Add MK</a>
+                    <a href="<?php echo e(route('pollResult')); ?>" style="font-size: 30px; margin:auto;" class="btn bg-card-green hover:bg-soft-green text-cream font-bold py-2 px-4 rounded mt-4 inline-block">Hasil Polling</a>
+                </div>
+            <?php endif; ?>
+        
+            <?php endif; ?>
+            
+
         </div>
     </div>
  <?php echo $__env->renderComponent(); ?>

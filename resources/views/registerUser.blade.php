@@ -51,7 +51,7 @@
 
                 <div class="mb-4">
                     <x-input-label for="role" :value="__('Role')" />
-                    <x-text-input id="role" class="block mt-1 w-full" type="text" name="role" :value="old('role')" required  />
+                    <x-text-input id="role" class="block mt-1 w-full" type="number" name="role" :value="old('role')" required  />
                     <x-input-error :messages="$errors->get('role')" class="mt-2" />
                 </div>
 

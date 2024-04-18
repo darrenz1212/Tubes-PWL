@@ -20,7 +20,7 @@
 
     <div class="flex justify-center" style="margin-left: 10%; margin-right:10%;">
         <div class="text-center text-card-green">
-            <p style="font-size: 3.6rem;">
+            <p class="text-card-green mt-5" style="font-size: 500%;">
                 Selamat datang
             </p>
             <p style="font-size: 1.2rem;">

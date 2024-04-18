@@ -1,5 +1,7 @@
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-ZhQv/LLWeaX4cn7JZzpwk56+b53EXd3pXrEl/ZpJCBjXxhuEeeeoN4D3RkWu9tVow0egFk8hMMqYjLzIwTrK8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
 </head>
 
 <style>
@@ -54,7 +56,7 @@
         </h2>
      <?php $__env->endSlot(); ?>
     <h1 align="center" class="text-card-green mt-5" style="font-size: 500%;">Hasil Polling</h1>
-    <h2 align="center" id="date-time" class="text-card-green" style="font-size: 200%;">Per</h2>
+    <p align="center" id="date-time" class="text-card-green">Per</p>
 
     <div class="container mt-5" style="margin: auto">
         <div class="row justify-content-center"> 
@@ -66,6 +68,7 @@
                             <th class="text-center bg-dark-cream">Kode Mata Kuliah</th>
                             <th class="text-center bg-dark-cream">Jumlah Vote</th>
                             <th class="text-center bg-dark-cream">Persentase</th>
+                            <th class="text-center bg-dark-cream">></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,6 +86,11 @@
                             <td class="vote-bar-cell">
                                 <div class="vote-bar bg-soft-green text-center" style="width: <?php echo e(($h->jumlah / $totalVotes) * 100); ?>%"></div>
                                 <div class="vote-text text-dark-creama"><?php echo e(round(($h->jumlah / $totalVotes) * 100)); ?>%</div>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-light">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
