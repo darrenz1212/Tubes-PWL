@@ -30,7 +30,7 @@ class updateDeleteController extends Controller
                 'nrp' => $request->nrp,
                 'nama' => $request->nama,
                 'email' => $request->email,
-                'password' => bcrypt($request->password), 
+                'password' => bcrypt($request->password),
                 'prodi' => $request->prodi,
                 'fakultas' => $request->fakultas,
             ]);
