@@ -38,17 +38,17 @@ class RegisteredUserController extends Controller
                  'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
                  'password' => ['required', 'confirmed', Rules\Password::defaults()],
              ]);
-     
+
              $pullkk = $request->nrp;
-     
+
              $kk = substr($pullkk,0,2);
-     
+
              if ($kk >= "20"){
                  $kurikulum = 2020;
              }else{
                  $kurikulum = 2019;
              }
-     
+
              $user = User::create([
                  'nrp' => $request->nrp,
                  'nama' => $request->nama,
@@ -59,11 +59,11 @@ class RegisteredUserController extends Controller
                  'role' => 0,
                  'kurikulum' => $kurikulum
              ]);
-     
+
              event(new Registered($user));
-     
+
              Auth::login($user);
-     
+
              return redirect(route('login', absolute: false));
 
          } catch (QueryException $e) {
@@ -71,5 +71,6 @@ class RegisteredUserController extends Controller
                  return redirect()->back()->withErrors(['nrp' => 'NRP sudah pernah didaftarkan.'])->withInput();
              }
          }
+         return redirect('registerUser');
     }
 }

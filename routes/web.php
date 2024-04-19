@@ -6,7 +6,6 @@ use App\Http\Controllers\pollResultController;
 use App\Http\Controllers\updateDeleteController;
 use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Kernel;
 use App\Http\Middleware\Mahasiswa;
 use App\Http\Middleware\Prodi;
 use App\Http\Middleware\Admin;
@@ -46,8 +45,7 @@ Route::middleware(['auth',Admin::class])->group(function (){
     Route::put('/update/{user}', [updateDeleteController::class, 'update'])->name('update');
     Route::get('/admin', [adminController::class, 'index'])->name('admin');
     Route::get('/registerUser', [adminController::class, 'registerUser'])->name('registerUser');
-    Route::post('/registerUser',[\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])->name('register-user');
-    // Route::get('/pollResult', [pollResultController::class, 'index'])->name('pollResult');
+    Route::post('/registerUser',[adminController::class, 'store'])->name('storeUser');
 });
 
 require __DIR__.'/auth.php';
