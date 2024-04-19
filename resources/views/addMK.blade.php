@@ -17,7 +17,7 @@
                 <form id="addMatkulForm" action="{{ route('mata-kuliah.store') }}" method="POST" class="">
                     @csrf
                     <div class="mb-3">
-                        <label for="id_matkul" class="form-label font-medium text-card-green">Kode Mata Kuliah</label><br>
+                        <label for="id_matkul" class="form-label font-medium text-card-green">Kode Mata Kulah</label><br>
                         <input type="text" name="id_matkul" class="custom-input bg-soft-green text-card-green focus-ring py-1 px-2 text-decoration-none border rounded-2" id="id_matkul">
                     </div>
                     <div class="mb-3">
