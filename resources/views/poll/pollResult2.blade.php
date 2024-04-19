@@ -49,7 +49,7 @@
     <p align="center" id="date-time" class="text-card-green">Per</p>
 
     <div class="container mt-5" style="margin: auto">
-        <div class="row justify-content-center"> 
+        <div class="row justify-content-center">
             <div class="col justify-content-center">
                 <table class="pollTable text-card-green" border="1" style="width: 80%;">
                     <thead>
@@ -67,7 +67,7 @@
                             foreach($hasilPol as $h) {
                                 $totalVotes += $h->jumlah;
                             }
-                            @endphp
+                        @endphp
                         @foreach($hasilPol as $h)
                         <tr>
                             <td class="p-3 text-center">{{ $h->nama_matkul }}</td>
@@ -92,7 +92,7 @@
             <button style="width: 8rem;" type="button" class="btn bg-card-green text-cream hover:bg-soft-green hover:text-card-green" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Chart
             </button>
-            
+
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content bg-cream">
@@ -101,7 +101,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <canvas id="pollChart" width="400" height="400"></canvas>  
+                            <canvas id="pollChart" width="400" height="400"></canvas>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger text-danger hover:text-white" data-bs-dismiss="modal">Close</button>
@@ -130,7 +130,7 @@
         },
         @endforeach
     ];
-    
+
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
