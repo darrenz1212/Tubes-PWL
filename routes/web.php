@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\pollController;
 use App\Http\Controllers\pollResultController;
 use App\Http\Controllers\updateDeleteController;
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Kernel;
 use App\Http\Middleware\Mahasiswa;
@@ -18,9 +19,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/prodi',function (){
-    return view('dashboardProdi') ;
-})->middleware(['auth','verified'])->name('prodi');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -46,6 +44,10 @@ Route::middleware(['auth',Admin::class])->group(function (){
     Route::delete('/delete/{user}', [updateDeleteController::class, 'destroy'])->name('updateDelete.destroy');
     Route::get('/update/{user}', [updateDeleteController::class, 'showUpdate'])->name('userUpdate');
     Route::put('/update/{user}', [updateDeleteController::class, 'update'])->name('update');
+    Route::get('/admin', [adminController::class, 'index'])->name('admin');
+    Route::get('/registerUser', [adminController::class, 'registerUser'])->name('registerUser');
+    Route::post('/registerUser',[\App\Http\Controllers\Auth\RegisteredUserController::class, 'store'])->name('register-user');
+    // Route::get('/pollResult', [pollResultController::class, 'index'])->name('pollResult');
 });
-require __DIR__.'/auth.php';
 
+require __DIR__.'/auth.php';

@@ -19,9 +19,9 @@
             <x-input-label for="password" :value="__('Password')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+                          type="password"
+                          name="password"
+                          required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -43,7 +43,6 @@
                 @endif
             </div>
             <div>
-                <a href="{{ route('register') }}" class="underline text-sm text-orange-100 hover:text-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">{{ __('Register') }}</a>
                 <x-primary-button class="ms-3 bg-soft-green">
                     {{ __('Log in') }}
                 </x-primary-button>

@@ -13,12 +13,11 @@ class updateDeleteController extends Controller
         return view('updateDelete', compact('users'));
     }
 
-    public function showUpdate()
+    public function showUpdate(User $user)
     {
-        $user = User::all();
         return view('userUpdate', compact('user'));
-
     }
+
 
     public function update(Request $request, User $user)
 {
@@ -56,7 +55,7 @@ class updateDeleteController extends Controller
         dd($e->getMessage());
     }
 
-    return redirect()->route('updateDelete');
+    return redirect()->route('updateDelete')->with('success', 'Data user berhasil diperbarui.');
 }
 
 

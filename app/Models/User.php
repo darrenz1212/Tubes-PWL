@@ -57,5 +57,18 @@ class User extends Authenticatable
         return $this->hasMany(PollDet::class);
     }
 
+    public function isAdmin($userType)
+    {
+        if ($userType === 'Admin') {
+            return $this->role === 2;
+        } elseif ($userType === 'Mahasiswa') {
+            return $this->role === 1;
+        } elseif($userType === 'Prodi') {
+            return $this->role === 0;
+        }
+        return false;
+    }
+
+
 
 }
