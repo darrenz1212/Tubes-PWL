@@ -14,7 +14,6 @@
                 Update User Data
             </p>
             <section>
-                {{ dd($user[0]->nrp) }}
                 <form id="updateUserDataForm" action="{{ route('userUpdate', ['user' => $user->nrp]) }}" method="POST" class="">
                     @csrf
                     @method('PUT')
@@ -42,36 +41,39 @@
                         <label for="fakultas" class="form-label font-medium text-card-green">Fakultas</label><br>
                         <input type="text" name="fakultas" class="custom-input bg-soft-green text-card-green focus-ring py-1 px-2 text-decoration-none border rounded-2" id="fakultas" value="{{ $user->fakultas }}">
                     </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label font-medium text-card-green">Role</label><br>
+                        <input type="text" name="role" class="custom-input bg-soft-green text-card-green focus-ring py-1 px-2 text-decoration-none border rounded-2" id="fakultas" value="{{ $user->role }}">
+                    </div>
                     <button type="submit" class="btn btn-primary bg-card-green hover:bg-soft-green">Update</button>
                 </form>
-                <span style="visibility: hidden; height: 250px">.</span>
             </section>
         </div>
     </div>
 </x-app-layout>
 <style>
     .custom-input {
-        width: 100%;
+        width: 100%; 
         height: 40px;
         padding: 8px;
-        font-size: 16px;
+        font-size: 16px; 
         border-radius: 4px;
         border: 1px solid #ccc;
         box-sizing: border-box;
-        margin-top: 5px;
-        transition: box-shadow 0.3s;
-        outline: 0;
+        margin-top: 5px; 
+        transition: box-shadow 0.3s; 
+        outline: 0; 
     }
 
     .custom-input:focus {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $('#updateUserDataForm').on('submit', function(event) {
-        event.preventDefault();
+        event.preventDefault(); 
         var form = $(this);
 
         $.ajax({
@@ -80,11 +82,11 @@
             data: form.serialize(),
             success: function(response) {
                 console.log("Success!");
-                showAlert('success', 'User data updated successfully');
+                showAlert('success', 'Data user berhasil diupdate.');
             },
             error: function(xhr, status, error) {
                 console.log("Error:", error);
-                showAlert('error', 'Failed to update user data. Please make sure all fields are filled.');
+                showAlert('error', 'Gagal mengupdate data user, pastika semua data terisi dan NRP sesuai.');
             }
         });
     });
