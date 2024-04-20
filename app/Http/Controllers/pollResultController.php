@@ -11,12 +11,11 @@ class pollResultController extends Controller
 {
     public function index()
     {
-        $pollingDetail = PollDet::select('polling.id_matkul', 'mata_kuliah.nama_matkul', DB::raw('COUNT(*) as jumlah'))
-            ->join('polling', 'polling_detail.id_polling', '=', 'polling.id_polling')
-            ->join('mata_kuliah', 'polling.id_matkul', '=', 'mata_kuliah.id_matkul')
-            ->groupBy('polling.id_matkul', 'mata_kuliah.nama_matkul')
+        $pollingData = PollDet::join('polling', 'polling_detail.id_matkul', '=', 'polling.id_matkul')
+            ->select('polling_detail.id_matkul', 'polling.nama_matkul', DB::raw('COUNT(polling.id_matkul) AS jumlah'))
+            ->groupBy('polling_detail.id_matkul', 'polling.nama_matkul')
             ->get();
-        return view('poll.pollResult',['hasilPol'=>$pollingDetail]);
+        return view('poll.pollResult',['hasilPol'=>$pollingData]);
     }
 
     public function showPoll()

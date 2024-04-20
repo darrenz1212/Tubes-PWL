@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class updateDeleteController extends Controller
 {
@@ -21,6 +22,7 @@ class updateDeleteController extends Controller
 
     public function update(Request $request, User $user)
 {
+
     $request->validate([
         'nrp' => 'required',
         'nama' => 'required',
@@ -39,6 +41,7 @@ class updateDeleteController extends Controller
                 'password' => bcrypt($request->password),
                 'prodi' => $request->prodi,
                 'fakultas' => $request->fakultas,
+                'role' => $request->role
             ]);
         } else {
             // pass kosong
@@ -48,6 +51,7 @@ class updateDeleteController extends Controller
                 'email' => $request->email,
                 'prodi' => $request->prodi,
                 'fakultas' => $request->fakultas,
+                'role' => $request->role
             ]);
         }
     } catch (\Exception $e) {
@@ -67,8 +71,14 @@ class updateDeleteController extends Controller
 
     public function destroy(User $user)
     {
-        $user->delete();
-        return redirect()->route('updateDelete');
+        if (Auth::user()->nrp == $user->nrp){
+            dd("Error");// tambahin eror "tidak bisa mendelete akun sendiri
+
+        }else{
+            $user->delete();
+            return redirect()->route('updateDelete');
+        };
+
     }
 
 }

@@ -28,8 +28,17 @@
                         <label for="kurikulum" class="form-label font-medium text-card-green">Kurikulum</label><br>
                         <input type="text" name="kurikulum" class="custom-input bg-soft-green text-card-green  focus-ring py-1 px-2 text-decoration-none border rounded-2" id="kurikulum">
                     </div>
+                    <div class="mb-3">
+                        <label for="tanggal_dibuka" class="form-label font-medium text-card-green">Tanggal Dibuka</label><br>
+                        <input type="datetime-local" name="tanggal_dibuka" class="custom-input bg-soft-green text-card-green  focus-ring py-1 px-2 text-decoration-none border rounded-2" id="tanggal_dibuka">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_ditutup" class="form-label font-medium text-card-green">Tanggal Ditutup</label><br>
+                        <input type="datetime-local" name="tanggal_ditutup" class="custom-input bg-soft-green text-card-green  focus-ring py-1 px-2 text-decoration-none border rounded-2" id="tanggal_ditutup">
+                    </div>
 
-                    <div class="mb-3"> 
+
+                    <div class="mb-3">
                         <label for="sks" class="form-label font-medium text-card-green">Jumlah SKS</label><br>
                         <input type="number" name="sks" class="custom-input bg-soft-green text-card-green focus-ring py-1 px-2 text-decoration-none border rounded-2" id="sks">
                     </div>
@@ -41,27 +50,27 @@
 </x-app-layout>
 <style>
     .custom-input {
-        width: 100%; 
+        width: 100%;
         height: 40px;
         padding: 8px;
-        font-size: 16px; 
+        font-size: 16px;
         border-radius: 4px;
         border: 1px solid #ccc;
         box-sizing: border-box;
-        margin-top: 5px; 
-        transition: box-shadow 0.3s; 
-        outline: 0; 
+        margin-top: 5px;
+        transition: box-shadow 0.3s;
+        outline: 0;
     }
 
     .custom-input:focus {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $('#addMatkulForm').on('submit', function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
         var form = $(this);
 
         $.ajax({

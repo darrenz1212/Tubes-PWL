@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PollDet;
+use App\Models\Polling;
 use Illuminate\Http\Request;
 use App\Models\matkul;
 use Illuminate\Support\Facades\Auth;
@@ -16,15 +17,9 @@ class pollController extends Controller
 
     public function index()
     {
-//        $kk = User::all();
-//        dd($kk);
-//        Kurikulum otomatis masih gagal, sementara pake 2020 dlu
+        $kk = Auth::user() -> Kurikulum;
 
-        $mata_kuliah = DB::table('polling')
-            ->join('mata_kuliah', 'polling.id_matkul', '=', 'mata_kuliah.id_matkul')
-            ->select('polling.id_polling', 'mata_kuliah.*')
-            ->where('kurikulum','=',2020)
-            ->get();
+        $mata_kuliah = Polling::all()->where('kurikulum',$kk);
 
         return view('poll.poll', ['mata_kuliah' => $mata_kuliah]); // Pass $mata_kuliah to the view
     }
@@ -42,11 +37,12 @@ class pollController extends Controller
             }
         }
         $selectedCourses = $request->selected_courses;
-        $mataKuliah = DB::table('polling')
-            ->join('mata_kuliah', 'polling.id_matkul', '=', 'mata_kuliah.id_matkul')
-            ->select('polling.id_polling', 'mata_kuliah.*')
-            ->whereIn('polling.id_polling', $selectedCourses)
-            ->get();
+//        $mataKuliah = Polling::all()->where('id_matkul','=',$selectedCourses);
+
+        $mataKuliah = [];
+        foreach ($selectedCourses as $selectedCourse) {
+            $mataKuliah[] = Polling::where('id_matkul', $selectedCourse)->first();
+        }
 
 
 //        Syntax SQL  :
@@ -71,7 +67,7 @@ class pollController extends Controller
                 // Simpan data ke dalam tabel PollDet
                 PollDet::create([
                     'nrp' => $nrp,
-                    'id_polling' => $m->id_polling // Anggap saja id_polling adalah ID mata kuliah
+                    'id_matkul' => $m->id_matkul //
                 ]);
             }
             return redirect('poll');

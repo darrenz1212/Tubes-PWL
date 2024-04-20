@@ -33,7 +33,7 @@
                                 <tr>
                                     <td class="pb-5">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="selected_courses[]" id="course_{{ $matkul->id_polling }}" value="{{ $matkul->id_polling }}">
+                                            <input class="form-check-input" type="checkbox" name="selected_courses[]" id="course_{{ $matkul->id_matkul }}" value="{{ $matkul->id_matkul }}">
                                             <label class="form-check-label" for="course_{{ $matkul->id_matkul }}"></label>
                                         </div>
                                     </td>
