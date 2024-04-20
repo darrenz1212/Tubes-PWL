@@ -23,7 +23,7 @@
                     <thead>
                         <tr>
                             <th scope="col" class="text-center bg-dark-cream p-2">NRP</th>
-                            <th scope="col" class="text-center bg-dark-cream">Nama</th>
+                            <th scope="col" class="text-center bg-dark-cream ">Nama</th>
                             <th scope="col" class="text-center bg-dark-cream">Email</th>
                             <th scope="col" class="text-center bg-dark-cream pe-4">Actions</th>
                         </tr>

@@ -28,6 +28,15 @@
                         <label for="kurikulum" class="form-label font-medium text-card-green">Kurikulum</label><br>
                         <input type="text" name="kurikulum" class="custom-input bg-soft-green text-card-green  focus-ring py-1 px-2 text-decoration-none border rounded-2" id="kurikulum">
                     </div>
+                    <div class="mb-3">
+                        <label for="tanggal_dibuka" class="form-label font-medium text-card-green">Tanggal Dibuka</label><br>
+                        <input type="datetime-local" name="tanggal_dibuka" class="custom-input bg-soft-green text-card-green  focus-ring py-1 px-2 text-decoration-none border rounded-2" id="tanggal_dibuka">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_ditutup" class="form-label font-medium text-card-green">Tanggal Ditutup</label><br>
+                        <input type="datetime-local" name="tanggal_ditutup" class="custom-input bg-soft-green text-card-green  focus-ring py-1 px-2 text-decoration-none border rounded-2" id="tanggal_ditutup">
+                    </div>
+
 
                     <div class="mb-3">
                         <label for="sks" class="form-label font-medium text-card-green">Jumlah SKS</label><br>

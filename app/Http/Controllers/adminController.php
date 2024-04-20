@@ -38,8 +38,10 @@ class adminController extends Controller
 
              if ($kk >= "20"){
                  $kurikulum = 2020;
-             }else{
+             }elseif($kk < "20"){
                  $kurikulum = 2019;
+             }else{
+                 $kurikulum = 0000;
              }
 
              $user = User::create([

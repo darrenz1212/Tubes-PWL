@@ -12,7 +12,6 @@ class Polling extends Model
 
     protected $fillable = [
         'id_matkul',
-        'nrp',
         'kurikulum',
         'nama_matkul',
         'sks',
