@@ -11,7 +11,7 @@
     <div class="flex justify-center" style="margin-left: 10%; margin-right:10%;">
         <div class="text-center text-card-green">
             <p style="font-size: 3.6rem;">
-                Silahkan masukkan mata kulia
+                Silahkan masukkan mata kuliah
             </p>
             <section>
                 <form id="addMatkulForm" action="{{ route('mata-kuliah.store') }}" method="POST" class="">

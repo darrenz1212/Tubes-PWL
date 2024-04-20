@@ -12,6 +12,6 @@ class PollDet extends Model
     protected $fillable = [
         'id_pollingDetail',
         'nrp',
-        'id_polling'
+        'id_matkul'
     ];
 }
