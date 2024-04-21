@@ -25,6 +25,7 @@
                         <tr>
                             <th scope="col" class="text-center bg-dark-cream p-2">NRP</th>
                             <th scope="col" class="text-center bg-dark-cream">Nama</th>
+                            <th scope="col" class="text-center bg-dark-cream">Role</th>
                             <th scope="col" class="text-center bg-dark-cream">Email</th>
                             <th scope="col" class="text-center bg-dark-cream pe-4">Actions</th>
                         </tr>
@@ -34,6 +35,13 @@
                         <tr style="line-height: 200%;">
                             <td class="p-3 text-center">{{ $user->nrp }}</td>
                             <td class="text-center">{{ $user->nama }}</td>
+                            @if($user->role == 1)
+                                <td class="text-center">Mahasiswa</td>
+                            @elseif($user->role == 0)
+                                <td class="text-center">Prodi</td>
+                            @else
+                                <td class="text-center">Admin</td>
+                            @endif
                             <td class="text-center">{{ $user->email }}</td>
                             <td class="text-center">
                                 <div class="row">

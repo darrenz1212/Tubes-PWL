@@ -76,6 +76,12 @@ class pollController extends Controller
 
     public function showPoll()
     {
+        $user = Auth::user()->nrp;
 
+        $pollrest = PollDet::all()->where('nrp','=',$user);
+
+//nanti buatin tampilan yang nunjukin mata kuliah apa aja yang dia pilih, sekalian nanti updatenya. gw kurang paham jujurli
+//nama route nya /mypoll trus namenya my-poll
+        return dd($pollrest);
     }
 }

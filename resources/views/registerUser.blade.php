@@ -7,7 +7,7 @@
     <br>
     <form id="registerForm" method="POST" action="{{ route('storeUser') }}">
         @csrf
-        
+
         <div class="row">
             <div class="col">
                 <div class="mb-4">
@@ -53,7 +53,7 @@
                     <x-input-label for="role" :value="__('Role')" />
                     <select id="role" name="role" class="form-select bg-soft-green text-card-green" style="border-radius:7px; margin-top: 4px;" required>
                         <option value="">Select Role</option>
-                        <option value="1">User</option>
+                        <option value="1">Mahasiswa</option>
                         <option value="0">Prodi</option>
                         <option value="2">Admin</option>
                     </select>

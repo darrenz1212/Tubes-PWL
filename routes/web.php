@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth',Mahasiswa::class])->group(function (){
     Route::get('/poll', [pollController::class, 'index'])->name('poll');
     Route::post('/poll',[pollController::class,'createPoll'])->name('create-poll');
+    Route::get('/mypoll',[pollController::class,'showPoll'])->name('my-poll');
 });
 
 
@@ -36,6 +37,7 @@ Route::middleware(['auth',Prodi::class])->group(function (){
     Route::get('/pollResult', [pollResultController::class, 'index'])->name('pollResult');
     Route::get('/addmk',[\App\Http\Controllers\MKController::class,'index'])->name('addMK');
     Route::post('/addmk',[\App\Http\Controllers\MKController::class,'store'])->name('mata-kuliah.store');
+    Route::get('/showpoll/{matkul}')->name('show-poll');
 });
 
 

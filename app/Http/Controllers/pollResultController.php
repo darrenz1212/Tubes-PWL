@@ -21,6 +21,5 @@ class pollResultController extends Controller
     public function showPoll()
     {
 
-
     }
 }
