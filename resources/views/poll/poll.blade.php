@@ -1,4 +1,5 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <x-app-layout>
     <x-slot name="header">
@@ -6,7 +7,21 @@
             {{ __('Poll Mata Kuliah') }}
         </h2>
     </x-slot>
-
+    @if (session('message'))
+        <div class="alert alert-success text-center">
+            {{ session('message') }}
+        </div>
+    @endif
+    @if (session('already_voted'))
+        <div class="alert alert-danger text-center">
+            {{ session('already_voted') }}
+        </div>
+    @endif
+    @if (session('sks_error'))
+        <div class="alert alert-danger text-center">
+            {{ session('sks_error') }}
+        </div>
+    @endif
     <div class="container mx-auto text-card-green">
         <div class="row justify-content-center">
             <div class="col-md-10 text-center">
@@ -16,10 +31,11 @@
                     <ul style="list-style-type: disc;">
                         <li>Anda dapat memilih lebih dari satu mata kuliah</li>
                         <li>Jumlah SKS yang dapat dipilih adalah 9 SKS</li>
+                        <li>Vote yang diambil adalah vote terakhir anda</li>
                     </ul>
                 </div>
                 <form method="post" action="{{ route('create-poll') }}">
-                    @csrf
+                    @csrf   
                     <div class="mx-auto mt-5 text-center">
                         <table class="mx-auto text-card-green">
                             <tr class="" style="font-size: 1.6rem;">
@@ -38,9 +54,9 @@
                                         </div>
                                     </td>
                                     <td class="pb-5">{{ $matkul->nama_matkul }}</td>
-                                    <td class="pb-5">{{ $matkul->id_matkul }}</td>
-                                    <td class="pb-5">{{ $matkul->kurikulum }}</td>
-                                    <td class="pb-5">{{ $matkul->sks }}</td>
+                                    <td class="pb-5 text-center">{{ $matkul->id_matkul }}</td>
+                                    <td class="pb-5 text-center">{{ $matkul->kurikulum }}</td>
+                                    <td class="pb-5 text-center">{{ $matkul->sks }}</td>
                                 </tr>
                             @endforeach
                         </table>
@@ -50,40 +66,5 @@
             </div>
         </div>
     </div>
-</x-app-layout>
 
-<script>
-    // document.getElementById('submitBtn').addEventListener('click', function() {
-    //     const swalWithBootstrapButtons = Swal.mixin({
-    //         customClass: {
-    //             confirmButton: 'btn btn-success',
-    //             cancelButton: 'btn btn-danger'
-    //         },
-    //         buttonsStyling: false
-    //     });
-    //
-    //     swalWithBootstrapButtons.fire({
-    //         title: 'Are you sure?',
-    //         text: "You won't be able to revert this!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonText: 'Yes, submit it!',
-    //         cancelButtonText: 'No, cancel!',
-    //         reverseButtons: true
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             // Trigger form submission
-    //             document.querySelector('form').submit();
-    //         } else if (
-    //             /* Read more about handling dismissals below */
-    //             result.dismiss === Swal.DismissReason.cancel
-    //         ) {
-    //             swalWithBootstrapButtons.fire(
-    //                 'Cancelled',
-    //                 'Your submission has been cancelled',
-    //                 'error'
-    //             );
-    //         }
-    //     });
-    // });
-</script>
+</x-app-layout>

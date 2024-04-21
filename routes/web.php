@@ -5,6 +5,7 @@ use App\Http\Controllers\pollController;
 use App\Http\Controllers\pollResultController;
 use App\Http\Controllers\updateDeleteController;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\unauthorizedController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Mahasiswa;
 use App\Http\Middleware\Prodi;
@@ -47,5 +48,7 @@ Route::middleware(['auth',Admin::class])->group(function (){
     Route::get('/registerUser', [adminController::class, 'registerUser'])->name('registerUser');
     Route::post('/registerUser',[adminController::class, 'store'])->name('storeUser');
 });
+
+Route::get('/unauthorized', [unauthorizedController::class, 'index'])->name('unauthorized');
 
 require __DIR__.'/auth.php';

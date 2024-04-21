@@ -54,7 +54,7 @@
                 <table class="pollTable text-card-green" border="1" style="width: 80%;">
                     <thead>
                         <tr>
-                            <th class="text-center bg-dark-cream p-2">Mata Kliah</th>
+                            <th class="text-center bg-dark-cream p-2">Mata Kuliah</th>
                             <th class="text-center bg-dark-cream">Kode Mata Kuliah</th>
                             <th class="text-center bg-dark-cream">Jumlah Vote</th>
                             <th class="text-center bg-dark-cream">Persentase</th>
@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class="row justify-content-center mt-5">
-            <button style="width: 8rem;" type="button" class="btn bg-card-green text-cream hover:bg-soft-green hover:text-card-green" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button style="width: 8rem;" type="button" class="btn bg-card-green text-cream hover:bg-soft-green hover:text-card-green  mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Chart
             </button>
 
