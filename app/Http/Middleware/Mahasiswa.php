@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Redirect;
 
 class Mahasiswa
 {
@@ -18,6 +19,8 @@ class Mahasiswa
         if ($request->user()->role == 1){
             return $next($request);
         }
-        return new Response('unauthorized');
+        return response()->redirectToRoute('unauthorized')->send();
     }
 }
+
+
