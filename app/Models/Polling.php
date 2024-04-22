@@ -9,6 +9,7 @@ class Polling extends Model
 {
     use HasFactory;
     protected $table = 'polling';
+    protected $primaryKey = 'id_matkul';
 
     protected $fillable = [
         'id_matkul',
@@ -18,5 +19,4 @@ class Polling extends Model
         'tanggal_dibuka',
         'tanggal_ditutup'
     ];
-
 }
