@@ -69,20 +69,24 @@
                             }
                         @endphp
                         @foreach($hasilPol as $h)
-                        <tr>
-                            <td class="p-3 text-center">{{ $h->nama_matkul }}</td>
-                            <td class="text-center">{{ $h->id_matkul }}</td>
-                            <td class="text-center">{{ $h->jumlah }}</td>
-                            <td class="vote-bar-cell">
-                                <div class="vote-bar bg-soft-green text-center" style="width: {{ ($h->jumlah / $totalVotes) * 100 }}%"></div>
-                                <div class="vote-text text-dark-creama">{{ round(($h->jumlah / $totalVotes) * 100) }}%</div>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-light">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </td>
-                        </tr>
+                            <form action="{{ route('show-poll') }}" method="get">
+                                <tr>
+                                    <td class="p-3 text-center">{{ $h->nama_matkul }}</td>
+                                    <td class="text-center">{{ $h->id_matkul }}</td>
+                                    <td class="text-center">{{ $h->jumlah }}</td>
+                                    <td class="vote-bar-cell">
+                                        <div class="vote-bar bg-soft-green text-center" style="width: {{ ($h->jumlah / $totalVotes) * 100 }}%"></div>
+                                        <div class="vote-text text-dark-creama">{{ round(($h->jumlah / $totalVotes) * 100) }}%</div>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" value="{{ $h-> id_matkul }}" name="id_matkul">
+                                        <button type="submit" class="btn btn-light">
+                                            <i class="fas fa-arrow-right">></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
+
                         @endforeach
                     </tbody>
                 </table>

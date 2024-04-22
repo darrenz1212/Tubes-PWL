@@ -37,7 +37,7 @@ Route::middleware(['auth',Prodi::class])->group(function (){
     Route::get('/pollResult', [pollResultController::class, 'index'])->name('pollResult');
     Route::get('/addmk',[\App\Http\Controllers\MKController::class,'index'])->name('addMK');
     Route::post('/addmk',[\App\Http\Controllers\MKController::class,'store'])->name('mata-kuliah.store');
-    Route::get('/showpoll/{matkul}')->name('show-poll');
+    Route::get('/showpoll',[pollResultController::class,'showPoll'])->name('show-poll');
 });
 
 

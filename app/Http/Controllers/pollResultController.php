@@ -18,8 +18,12 @@ class pollResultController extends Controller
         return view('poll.pollResult',['hasilPol'=>$pollingData]);
     }
 
-    public function showPoll()
+    public function showPoll(Request $request)
     {
+        $idMatkul = $request->id_matkul;
+
+        $showPoll = PollDet::all()->where('id_matkul','=',$idMatkul);
+        dd($showPoll);
 
     }
 }
