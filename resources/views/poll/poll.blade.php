@@ -1,4 +1,5 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <x-app-layout>
     <x-slot name="header">
@@ -6,7 +7,17 @@
             {{ __('Poll Mata Kuliah') }}
         </h2>
     </x-slot>
+    @if (session('message'))
+        <div class="alert alert-success text-center">
+            {{ session('message') }}
+        </div>
+    @endif
 
+    @if (session('sks_error'))
+        <div class="alert alert-danger text-center">
+            {{ session('sks_error') }}
+        </div>
+    @endif
     <div class="container mx-auto text-card-green">
         <div class="row justify-content-center">
             <div class="col-md-10 text-center">
@@ -16,8 +27,50 @@
                     <ul style="list-style-type: disc;">
                         <li>Anda dapat memilih lebih dari satu mata kuliah</li>
                         <li>Jumlah SKS yang dapat dipilih adalah 9 SKS</li>
+                        <li>Vote yang diambil adalah vote terakhir anda</li>
                     </ul>
-                </div>
+                </div><br>
+                <button type="button" class="btn bg-soft-green hover:bg-dark-cream" data-bs-toggle="modal" data-bs-target="#voteModal">
+                    Lihat pilihan anda
+                </button><br>
+
+                <div class="modal fade" id="voteModal" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content bg-card-green text-cream">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="voteModalLabel"><b>Pilihan anda</b></h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <?php $x = 0?>
+                            @foreach($namaMatkul as $n)
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <ul style="list-style-type:disc">
+                                              <li class="ms-5 text-dark-cream">
+                                                {{ $kodeMatkul[$x] }}
+                                              </li>
+                                            </ul>
+                                        </td>
+                                        <td class="text-cream">
+                                            {{ $n }}
+                                        </td>
+                                    </tr>
+                                    <?php $x++?>
+                                </table>
+                              @endforeach
+                              @if ($x == 0)
+                                <p>Anda belum memilih mata kuliah.</p>
+                            @endif
+                          </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn bg-cream text-card-green hover:bg-soft-green focus:bg-white" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                 <form method="post" action="{{ route('create-poll') }}">
                     @csrf
                     <div class="mx-auto mt-5 text-center">
@@ -25,7 +78,6 @@
                             <tr class="" style="font-size: 1.6rem;">
                                 <th class="px-4 pb-5"></th>
                                 <th class="px-4 pb-5">Nama Mata Kuliah</th>
-                                <th class="px-4 pb-5">ID Mata Kuliah</th>
                                 <th class="px-4 pb-5">Kurikulum</th>
                                 <th class="px-4 pb-5">SKS</th>
                             </tr>
@@ -38,52 +90,15 @@
                                         </div>
                                     </td>
                                     <td class="pb-5">{{ $matkul->nama_matkul }}</td>
-                                    <td class="pb-5">{{ $matkul->id_matkul }}</td>
-                                    <td class="pb-5">{{ $matkul->kurikulum }}</td>
-                                    <td class="pb-5">{{ $matkul->sks }}</td>
+                                    <td class="pb-5 text-center">{{ $matkul->kurikulum }}</td>
+                                    <td class="pb-5 text-center">{{ $matkul->sks }}</td>
                                 </tr>
                             @endforeach
                         </table>
-                        <button id="submitBtn" class="bg-card-green hover:bg-soft-green text-cream px-4 btn transition duration-150 ease-in-out" style="width: 10rem; height: 2rem; border-radius: 5px">Submit</button>
+                        <button id="submitBtn" class="bg-card-green hover:bg-soft-green text-cream px-4 py-1 btn transition duration-150 ease-in-out" style="width: 10rem; height: 2rem; border-radius: 5px">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </x-app-layout>
-
-<script>
-    // document.getElementById('submitBtn').addEventListener('click', function() {
-    //     const swalWithBootstrapButtons = Swal.mixin({
-    //         customClass: {
-    //             confirmButton: 'btn btn-success',
-    //             cancelButton: 'btn btn-danger'
-    //         },
-    //         buttonsStyling: false
-    //     });
-    //
-    //     swalWithBootstrapButtons.fire({
-    //         title: 'Are you sure?',
-    //         text: "You won't be able to revert this!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonText: 'Yes, submit it!',
-    //         cancelButtonText: 'No, cancel!',
-    //         reverseButtons: true
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             // Trigger form submission
-    //             document.querySelector('form').submit();
-    //         } else if (
-    //             /* Read more about handling dismissals below */
-    //             result.dismiss === Swal.DismissReason.cancel
-    //         ) {
-    //             swalWithBootstrapButtons.fire(
-    //                 'Cancelled',
-    //                 'Your submission has been cancelled',
-    //                 'error'
-    //             );
-    //         }
-    //     });
-    // });
-</script>

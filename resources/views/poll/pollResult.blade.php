@@ -1,7 +1,8 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-ZhQv/LLWeaX4cn7JZzpwk56+b53EXd3pXrEl/ZpJCBjXxhuEeeeoN4D3RkWu9tVow0egFk8hMMqYjLzIwTrK8g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <style>
@@ -53,43 +54,48 @@
             <div class="col justify-content-center">
                 <table class="pollTable text-card-green" border="1" style="width: 80%;">
                     <thead>
-                        <tr>
-                            <th class="text-center bg-dark-cream p-2">Mata Kliah</th>
-                            <th class="text-center bg-dark-cream">Kode Mata Kuliah</th>
-                            <th class="text-center bg-dark-cream">Jumlah Vote</th>
-                            <th class="text-center bg-dark-cream">Persentase</th>
-                            <th class="text-center bg-dark-cream">></th>
-                        </tr>
+                    <tr>
+                        <th class="text-center bg-dark-cream p-2">Mata Kuliah</th>
+                        <th class="text-center bg-dark-cream">Kode Mata Kuliah</th>
+                        <th class="text-center bg-dark-cream">Jumlah Vote</th>
+                        <th class="text-center bg-dark-cream">Persentase</th>
+                        <th class="text-center bg-dark-cream">></th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @php
-                            $totalVotes = 0;
-                            foreach($hasilPol as $h) {
-                                $totalVotes += $h->jumlah;
-                            }
-                        @endphp
-                        @foreach($hasilPol as $h)
-                        <tr>
-                            <td class="p-3 text-center">{{ $h->nama_matkul }}</td>
-                            <td class="text-center">{{ $h->id_matkul }}</td>
-                            <td class="text-center">{{ $h->jumlah }}</td>
-                            <td class="vote-bar-cell">
-                                <div class="vote-bar bg-soft-green text-center" style="width: {{ ($h->jumlah / $totalVotes) * 100 }}%"></div>
-                                <div class="vote-text text-dark-creama">{{ round(($h->jumlah / $totalVotes) * 100) }}%</div>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-light">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        @endforeach
+                    @php
+                        $totalVotes = 0;
+                        foreach($hasilPol as $h) {
+                            $totalVotes += $h->jumlah;
+                        }
+                    @endphp
+                    @foreach($hasilPol as $h)
+                        <form action="{{ route('store-mk') }}" method="post">
+                            @csrf
+                            <tr>
+                                <td class="p-3 text-center">{{ $h->nama_matkul }}</td>
+                                <td class="text-center">{{ $h->id_matkul }}</td>
+                                <td class="text-center">{{ $h->jumlah }}</td>
+                                <td class="vote-bar-cell">
+                                    <div class="vote-bar bg-soft-green text-center" style="width: {{ ($h->jumlah / $totalVotes) * 100 }}%"></div>
+                                    <div class="vote-text text-dark-creama">{{ round(($h->jumlah / $totalVotes) * 100) }}%</div>
+                                </td>
+                                <td class="text-end">
+                                    <!-- Tambahkan input hidden untuk mengirimkan id_matkul -->
+                                    <input type="hidden" name="id_matkul" value="{{ $h->id_matkul }}">
+                                    <button type="submit" class="btn bg-soft-green hover:bg-dark-cream">
+                                        Tambahkan ke database
+                                    </button>
+                                </td>
+                            </tr>
+                        </form>
+                    @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="row justify-content-center mt-5">
-            <button style="width: 8rem;" type="button" class="btn bg-card-green text-cream hover:bg-soft-green hover:text-card-green" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button style="width: 8rem;" type="button" class="btn bg-card-green text-cream hover:bg-soft-green hover:text-card-green  mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Chart
             </button>
 
@@ -122,7 +128,7 @@
 
     // pie chart
     var pieData = [
-        @foreach($hasilPol as $h)
+            @foreach($hasilPol as $h)
         {
             label: "{{ $h->nama_matkul }}",
             value: {{ $h->jumlah }},
@@ -161,5 +167,45 @@
             maintainAspectRatio: false
         }
     });
+
+    function handleFormSubmit(event) {
+    event.preventDefault();
+
+    var form = $(this);
+    var url = form.attr('action');
+
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: form.serialize(),
+        success: function(response) {
+            // Show SweetAlert success notification
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Mata kuliah berhasil ditambahkan.',
+            });
+        },
+        error: function(xhr, status, error) {
+            if (xhr.responseText.includes("Duplicate entry")) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Mata kuliah sudah ditambahkan sebelumnya.',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Terjadi kesalahan saat melakukan operasi. Mohon coba lagi.',
+                });
+            }
+        }
+    });
+}
+
+    $(document).on('submit', 'form', handleFormSubmit);
+</script>
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

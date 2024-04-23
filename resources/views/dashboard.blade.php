@@ -42,11 +42,6 @@
                 @endif
 
             @endauth
-            {{-- <p style="font-size: 1.5rem;">
-            Hai {{ Auth::user()->nama }}, anda masuk sebagai mahasiswa! <br>
-            Silahkan vote mata kuliah yang anda inginkan
-            untuk dibuka di semester antara Juli-September 2024.
-            </p> --}}
 
         </div>
     </div>
