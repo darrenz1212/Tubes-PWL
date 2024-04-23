@@ -7,6 +7,7 @@
     <br>
     <form id="registerForm" method="POST" action="{{ route('storeUser') }}">
         @csrf
+
         <div class="row">
             <div class="col">
                 <div class="mb-4">
@@ -50,11 +51,15 @@
 
                 <div class="mb-4">
                     <x-input-label for="role" :value="__('Role')" />
-                    <x-text-input id="role" class="block mt-1 w-full" type="number" name="role" :value="old('role')" required  />
+                    <select id="role" name="role" class="form-select bg-soft-green text-card-green" style="border-radius:7px; margin-top: 4px;" required>
+                        <option value="">Select Role</option>
+                        <option value="1">Mahasiswa</option>
+                        <option value="0">Prodi</option>
+                        <option value="2">Admin</option>
+                    </select>
                     <x-input-error :messages="$errors->get('role')" class="mt-2" />
                 </div>
 
-                <!-- Confirm Password -->
                 <div class="mb-4">
                     <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
                     <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
@@ -74,33 +79,28 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    {{--$('#registerForm').on('submit', function(event) {--}}
-    {{--    event.preventDefault();--}}
-    {{--    var form = $(this);--}}
+    $('#registerForm').on('submit', function(event) {
+        event.preventDefault();
+        var form = $(this);
 
-    {{--    $.ajax({--}}
-    {{--        url: form.attr('action'),--}}
-    {{--        method: form.attr('method'),--}}
-    {{--        data: form.serialize(),--}}
-    {{--        success: function(response) {--}}
-    {{--            console.log("Sukses!");--}}
-    {{--            // Show success alert--}}
-    {{--            showAlert('success', 'Akun anda berhasil didaftarkan!');--}}
-    {{--            // Redirect to login page after 2 seconds (optional)--}}
-    {{--            // setTimeout(function(){--}}
-    {{--            //     window.location.href = "{{ route('login') }}";--}}
-    {{--            // }, 2000);--}}
-    {{--        },--}}
-    {{--        error: function(xhr, status, error) {--}}
-    {{--            console.log("Error:", error);--}}
-    {{--            console.log("XHR:", xhr.responseText); // Log the entire response--}}
-    {{--            if (xhr.responseText.includes("Duplicate entry")) {--}}
-    {{--                showAlert('error', 'NRP telah digunakan. Mohon gunakan NRP yang lain.');--}}
-    {{--            } else {--}}
-    {{--                showAlert('error', 'Terjadi kesalahan saat melakukan operasi. Mohon coba lagi.');--}}
-    {{--            }--}}
-    {{--        }--}}
-    {{--    });--}}
-    {{--});--}}
+        $.ajax({
+            url: form.attr('action'),
+            method: form.attr('method'),
+            data: form.serialize(),
+            success: function(response) {
+                console.log("Sukses!");
+                // Log the response to verify if the success callback is reached
+                console.log(response);
+                // Show success alert
+                Swal.fire({
+                    title: "Success",
+                    text: "Akun berhasil didaftarkan!",
+                    icon: "success"
+                });
+            },
+        });
+    });
 </script>
+
+
 

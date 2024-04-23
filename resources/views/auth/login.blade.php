@@ -1,4 +1,8 @@
+
+
 <x-guest-layout>
+    <img src="{{ asset('images\Faculty_Default.png') }}" width="240rem" class="mx-auto mb-8 mt-5">
+
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
     <h1 class="text-cream font-bold text-5xl text-center">Selamat datang!</h1>
@@ -18,11 +22,7 @@
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                          type="password"
-                          name="password"
-                          required autocomplete="current-password" />
-
+            <x-text-input id="password" class="block mt-1 w-full"  type="password" name="password" required autocomplete="current-password" />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 

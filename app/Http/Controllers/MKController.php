@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Polling;
 use Illuminate\Http\Request;
-use App\Models\matkul; // Add the import statement for MataKuliah model
 
 class MKController extends Controller
 {
     public function index()
     {
         return view('addMk');
+    }
+
+    public function indexDelete()
+    {
+        $polling = Polling::all();
+
+        return view('delMk', ['polling'=>$polling]);
     }
 
     public function store(Request $request)
@@ -31,6 +37,27 @@ class MKController extends Controller
 
         // Redirect back to the form with a success message
         return redirect()->back()->with('success', 'Mata kuliah berhasil ditambahkan!');
+    }
+
+    public function deleteMk(Request $request)
+    {
+        $request->validate([
+            'selected_courses' => 'required|array',
+        ]);
+        $course = $request->selected_courses; // Perbaiki typo menjadi selected_courses
+
+        foreach ($course as $c){
+            $deletedCount = Polling::where('id_matkul', $c)->delete();
+
+        }
+
+        if ($deletedCount > 0) {
+            session()->flash('message', 'Berhasil menghapus ' . $deletedCount . ' mata kuliah.');
+        } else {
+            session()->flash('sks_error', 'Tidak ada mata kuliah yang dipilih atau mata kuliah tidak ditemukan.');
+        }
+
+        return redirect()->route('delete-mk');
     }
 
 }

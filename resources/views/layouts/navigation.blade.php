@@ -6,23 +6,34 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-cream" />
+                        <img src="{{ asset('images\Faculty_Logo_Transparent.png') }}" width="60rem">
                     </a>
                 </div>
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="{{ request()->routeIs('dashboard') ? 'underlineDec' : '' }}">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="{{ request()->routeIs('profile.edit') ? 'underlineDec' : '' }}">
-                        {{ __('Profile') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('pollResult')" :active="request()->routeIs('pollResult')" class="{{ request()->routeIs('pollResult') ? 'underlineDec' : '' }}">
-                        {{ __('Poll Result') }}
-                    </x-nav-link>
-                </div>
-
-
+                @auth
+                @if(Auth::user()->isAdmin('Prodi'))
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="{{ request()->routeIs('dashboard') ? 'underlineDec' : '' }}">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="{{ request()->routeIs('profile.edit') ? 'underlineDec' : '' }}">
+                            {{ __('Profile') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('pollResult')" :active="request()->routeIs('pollResult')" class="{{ request()->routeIs('pollResult') ? 'underlineDec' : '' }}">
+                            {{ __('Poll Result') }}
+                        </x-nav-link>
+                    </div>
+                @else()
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="{{ request()->routeIs('dashboard') ? 'underlineDec' : '' }}">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')" class="{{ request()->routeIs('profile.edit') ? 'underlineDec' : '' }}">
+                            {{ __('Profile') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+            @endauth
             </div>
 
             <!-- Settings Dropdown -->

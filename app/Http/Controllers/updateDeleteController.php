@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PollDet;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -71,10 +72,18 @@ class updateDeleteController extends Controller
 
     public function destroy(User $user)
     {
+        $isPoll = PollDet::pluck('nrp')->toArray();
+
         if (Auth::user()->nrp == $user->nrp){
             dd("Error");// tambahin eror "tidak bisa mendelete akun sendiri
 
         }else{
+            foreach ($isPoll as $pollNrp) {
+                if ($pollNrp === $user->nrp) {
+                //ini error jadi admin gabisa hapus user yang udah nge vote. tinggal nanti bikinin erornya
+                    dd("nrp ada di dalam array isPoll");
+                }
+            }
             $user->delete();
             return redirect()->route('updateDelete');
         };

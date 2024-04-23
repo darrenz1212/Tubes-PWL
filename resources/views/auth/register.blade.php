@@ -80,16 +80,11 @@
             data: form.serialize(),
             success: function(response) {
                 console.log("Sukses!");
-                // Show success alert
                 showAlert('success', 'Akun anda berhasil didaftarkan!');
-                // Redirect to login page after 2 seconds (optional)
-                // setTimeout(function(){
-                //     window.location.href = "{{ route('login') }}";
-                // }, 2000);
             },
             error: function(xhr, status, error) {
                 console.log("Error:", error);
-                console.log("XHR:", xhr.responseText); // Log the entire response
+                console.log("XHR:", xhr.responseText);
                 if (xhr.responseText.includes("Duplicate entry")) {
                     showAlert('error', 'NRP telah digunakan. Mohon gunakan NRP yang lain.');
                 } else {
